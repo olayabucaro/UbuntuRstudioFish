@@ -12,4 +12,4 @@ curl -O "$rstudiourl"
 set rstudiofile (string split -r -m1 / $rstudiourl |tail -1)
 
 # Install latest Rstudio
-sudo gdebi $rstudiofile
+sudo apt -y install (string join '' ./ $rstudiofile)
