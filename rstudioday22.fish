@@ -10,7 +10,7 @@ curl --silent https://dailies.rstudio.com/rstudio/spotted-wakerobin/index.json -
 
 # Get the DEB URL and name
 set DEB (cat ./index.json | jq -r .electron.platforms.jammy.link)
-set FIL (cat ./index.json | jq -r .electron.platforms.jammy.filename)
+set rstudiofile (cat ./index.json | jq -r .electron.platforms.jammy.filename)
 set VER (cat ./index.json | jq -r .electron.platforms.jammy.version)
 
 # Download the file
@@ -18,12 +18,12 @@ curl -O "$DEB"
 
 # Install latest Rstudio
 echo "  - Installing Ubuntu 22 RStudio (electron) daily"
-#sudo gdebi $FIL
-sudo apt -y install (string join '' ./ $FIL)
+#sudo gdebi $rstudiofile
+sudo apt -y install (string join '' ./ $rstudiofile)
 
 # Remove instalation file
 echo "  - Cleaning Up"
-rm $FIL
+rm $rstudiofile
 rm index.json
 
 echo "DONE"
